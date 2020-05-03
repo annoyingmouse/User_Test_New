@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>repl.it</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"
+	/>
+	<link href="./style/style.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js">
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.2.0/vuex.js">
+
+	</script>
+</head>
+
+<body>
+	<div id="app">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">User Test</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<component v-bind:is="$store.getters.currentView"></component>
+		</div>
+	</div>
+	<script type="module" src="app.js"></script>
+</body>
+
+</html>
