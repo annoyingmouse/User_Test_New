@@ -1,4 +1,4 @@
-import PageHeader from './table-page-header.js';
+import PageHeader from './shared/table-page-header.js';
 
 export const SingleTable = Vue.component('single-table', {
   template: `

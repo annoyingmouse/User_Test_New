@@ -7,7 +7,7 @@ export const AddMember = Vue.component('add-member', {
             <form class="modal-content"
                   v-on:submit.prevent="onSubmit">
               <input type="hidden"
-                      v-model="user.index"/>
+                     v-model="user.index"/>
               <div class="modal-header">
                 <button type="button" 
                         class="close" 
@@ -21,7 +21,7 @@ export const AddMember = Vue.component('add-member', {
               <div class="modal-body">
                 <div class="form-group">
                   <label for="title" 
-                          class="control-label">
+                         class="control-label">
                     Their Title
                   </label>
                   <select class="form-control" 
@@ -38,39 +38,39 @@ export const AddMember = Vue.component('add-member', {
                 </div>
                 <div class="form-group">
                   <label for="forename" 
-                          class="control-label">
+                         class="control-label">
                     Their Forename
                   </label>
                   <input type="text" 
-                          class="form-control" 
-                          name="forename" 
-                          placeholder="Jane" 
-                          required 
-                          v-model="user.forename">
+                         class="form-control" 
+                         name="forename" 
+                         placeholder="Jane" 
+                         required 
+                         v-model="user.forename">
                 </div>
                 <div class="form-group">
                   <label for="surname" 
-                          class="control-label">
+                         class="control-label">
                     Their Surname
                   </label>
                   <input type="text" 
-                          class="form-control" 
-                          name="surname" 
-                          placeholder="Smith" 
-                          required 
-                          v-model="user.surname">
+                         class="form-control" 
+                         name="surname" 
+                         placeholder="Smith" 
+                         required 
+                         v-model="user.surname">
                 </div>
                 <div class="form-group">
                   <label for="dob" 
-                          class="control-label">
+                         class="control-label">
                     Their Date of Birth
                   </label>
                   <input type="date" 
-                          class="form-control" 
-                          name="dob" 
-                          placeholder="dd/mm/yyyy" 
-                          required 
-                          v-model="user.dob">
+                         class="form-control" 
+                         name="dob" 
+                         placeholder="dd/mm/yyyy" 
+                         required 
+                         v-model="user.dob">
                 </div>
               </div>
               <div class="modal-footer">

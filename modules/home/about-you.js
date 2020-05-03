@@ -5,7 +5,7 @@ export const AboutYou = Vue.component('about-you', {
       <div class="panel-body">
         <div class="form-group">
           <label for="ownTitle" 
-                  class="col-sm-2 control-label">
+                 class="col-sm-2 control-label">
             Your Title
           </label>
           <div class="col-sm-10">
@@ -24,44 +24,44 @@ export const AboutYou = Vue.component('about-you', {
         </div>
         <div class="form-group">
           <label for="ownForename" 
-                  class="col-sm-2 control-label">
+                 class="col-sm-2 control-label">
             Your Forename
           </label>
           <div class="col-sm-10">
             <input type="text" 
-                    class="form-control" 
-                    name="ownForename" 
-                    v-model="ownForename" 
-                    placeholder="John" 
-                    required>
+                   class="form-control" 
+                   name="ownForename" 
+                   v-model="ownForename" 
+                   placeholder="John" 
+                   required>
           </div>
         </div>
         <div class="form-group">
           <label for="ownSurname" 
-                  class="col-sm-2 control-label">
+                 class="col-sm-2 control-label">
             Your Surname
           </label>
           <div class="col-sm-10">
             <input type="text" 
-                    class="form-control" 
-                    v-model="ownSurname" 
-                    name="ownSurname" 
-                    placeholder="Smith" 
-                    required>
+                   class="form-control" 
+                   v-model="ownSurname" 
+                   name="ownSurname" 
+                   placeholder="Smith" 
+                   required>
           </div>
         </div>
         <div class="form-group">
           <label for="ownDob" 
-                  class="col-sm-2 control-label">
+                 class="col-sm-2 control-label">
             Your Date of Birth
           </label>
           <div class="col-sm-10">
             <input type="date" 
-                    class="form-control" 
-                    v-model="ownDob" 
-                    name="ownDob" 
-                    placeholder="dd/mm/yyyy" 
-                    required>
+                   class="form-control" 
+                   v-model="ownDob" 
+                   name="ownDob" 
+                   placeholder="dd/mm/yyyy" 
+                   required>
           </div>
         </div>
       </div>
@@ -101,4 +101,4 @@ export const AboutYou = Vue.component('about-you', {
       }
     }
   }
-})
+});
