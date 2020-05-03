@@ -28,7 +28,7 @@ export const Home = Vue.component('home', {
                 <tr v-for="(member, index) in familyMembers" 
                     v-bind:key="index">
                   <td>{{member.title}} {{member.forename}} {{member.surname}}</td>
-                  <td>{{member.dob}}</td>
+                  <td>{{new Date(member.dob).toLocaleDateString('en-GB')}}</td>
                   <td class="min">
                     <div class="pull-right btn-group btn-group-sm" 
                          role="group">
@@ -76,98 +76,9 @@ export const Home = Vue.component('home', {
         </div>
       </form> 
       <!-- Modal -->
-      <div v-if="showModal">
-        <transition name="modal">
-          <div class="modal-mask">
-            <div class="modal-wrapper">
-              <div class="modal-dialog">
-                <form class="modal-content"
-                      v-on:submit.prevent="onSubmit">
-                  <div class="modal-header">
-                    <button type="button" 
-                            class="close" 
-                            v-on:click="closeModal">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">
-                      Please tell us about the family member
-                    </h4>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="title" 
-                             class="control-label">
-                        Their Title
-                      </label>
-                      <select class="form-control" 
-                              name="title" 
-                              v-model="title"
-                              required>
-                        <option value="">Please Choose</option>
-                        <option value="Dr.">Dr.</option>
-                        <option value="Mr.">Mr.</option>
-                        <option value="Mrs.">Mrs.</option>
-                        <option value="Miss.">Miss.</option>
-                        <option value="Ms.">Ms.</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="forename" 
-                             class="control-label">
-                        Their Forename
-                      </label>
-                      <input type="text" 
-                             class="form-control" 
-                             name="forename" 
-                             placeholder="Jane" 
-                             required 
-                             v-model="forename">
-                    </div>
-                    <div class="form-group">
-                      <label for="surname" 
-                             class="control-label">
-                        Their Surname
-                      </label>
-                      <input type="text" 
-                             class="form-control" 
-                             name="surname" 
-                             placeholder="Smith" 
-                             required 
-                             v-model="surname">
-                    </div>
-                    <div class="form-group">
-                      <label for="dob" 
-                             class="control-label">
-                        Their Date of Birth
-                      </label>
-                      <input type="date" 
-                             class="form-control" 
-                             name="dob" 
-                             placeholder="dd/mm/yyyy" 
-                             required 
-                             v-model="dob">
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button v-on:click="closeModal" 
-                            type="button" 
-                            class="btn btn-default" 
-                            data-dismiss="modal">
-                      Close
-                    </button>
-                    <button type="submit"
-                            class="btn btn-primary">
-                      {{buttonText}}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </transition>
-      </div>
-       -->
-      <add-member v-if="showModal"></add-member>
+      <add-member v-if="showModal"
+                  v-bind:member="member"
+                  v-on:close-modal="closeModal"></add-member>
     </div>
   `,
   methods: {
@@ -175,43 +86,22 @@ export const Home = Vue.component('home', {
       this.$store.commit('changeView', page)  
     },
     closeModal() {
-      this.editingIndex = null;
       this.showModal = false;
-      this.title = '';
-      this.forename = '';
-      this.surname = '';
-      this.dob = '';
-      this.buttonText = 'Add Family Member';
-    },
-    onSubmit() {
-      const member = {
-        title: this.title,
-        forename: this.forename,
-        surname: this.surname,
-        dob: this.dob,
+      this.member = {
+        index: null,
+        title: '',
+        forename: '',
+        surname: '',
+        dob: ''
       }
-      if(this.buttonText === 'Update Family Member'){
-        const index = this.editingIndex
-        this.$store.commit('updateMember', {
-          index,
-          member
-        });
-      }else{
-        this.$store.commit('addMember', member);
-      }
-      this.closeModal()
     },
     removeMember(index){
       this.$store.commit('removeMember', index)
     },
     updateMember(index){
-      this.buttonText = 'Update Family Member'
-      this.editingIndex = index;
+      this.member = {...this.familyMembers[index]}
+      this.member.index = index;
       this.showModal = true;
-      this.title = this.familyMembers[index].title;
-      this.forename = this.familyMembers[index].forename;
-      this.surname = this.familyMembers[index].surname;
-      this.dob = this.familyMembers[index].dob;
     },
     onPageChange() {
       this.$store.commit('changeView', this.target);
@@ -225,17 +115,17 @@ export const Home = Vue.component('home', {
     }
   },
   components: {
-    PageHeader,
-    AboutYou
+    PageHeader
   },
   data() {
     return {
-      buttonText: 'Add Family Member',
-      editingIndex: null,
-      title: '',
-      forename: '',
-      surname: '',
-      dob: '',
+      member: {
+        index: null,
+        title: '',
+        forename: '',
+        surname: '',
+        dob: ''
+      },
       showModal: false,
       target: null
     }

@@ -26,7 +26,7 @@ export const AddMember = Vue.component('add-member', {
                   </label>
                   <select class="form-control" 
                           name="title" 
-                          v-model="title"
+                          v-model="user.title"
                           required>
                     <option value="">Please Choose</option>
                     <option value="Dr.">Dr.</option>
@@ -46,7 +46,7 @@ export const AddMember = Vue.component('add-member', {
                           name="forename" 
                           placeholder="Jane" 
                           required 
-                          v-model="forename">
+                          v-model="user.forename">
                 </div>
                 <div class="form-group">
                   <label for="surname" 
@@ -58,7 +58,7 @@ export const AddMember = Vue.component('add-member', {
                           name="surname" 
                           placeholder="Smith" 
                           required 
-                          v-model="surname">
+                          v-model="user.surname">
                 </div>
                 <div class="form-group">
                   <label for="dob" 
@@ -70,14 +70,13 @@ export const AddMember = Vue.component('add-member', {
                           name="dob" 
                           placeholder="dd/mm/yyyy" 
                           required 
-                          v-model="dob">
+                          v-model="user.dob">
                 </div>
               </div>
               <div class="modal-footer">
                 <button v-on:click="closeModal" 
                         type="button" 
-                        class="btn btn-default" 
-                        data-dismiss="modal">
+                        class="btn btn-default">
                   Close
                 </button>
                 <button type="submit"
@@ -92,33 +91,44 @@ export const AddMember = Vue.component('add-member', {
     </transition>
   `,
   props: {
-    buttonText: {
-      type: String,
-      required: true
-    },
-    user: {
+    member: {
       type: Object,
-      required: false,
-      default: {
-        index: null,
-        title: '',
-        forename: '',
-        surname: '',
-        dob: ''
-      }
+      required: true
     }
   },
   computed: {
     buttonText() {
-      return user ? 'Update Family Member' : 'Add Family Member'
+      return this.member.index === null ? 
+        'Add Family Member' :
+        'Update Family Member' 
     }
   },
-  data() {
+  methods: {
+    closeModal(){
+      this.$emit('close-modal')
+    },
+    onSubmit(){
+      const member = {
+        title: this.user.title,
+        forename: this.user.forename,
+        surname: this.user.surname,
+        dob: this.user.dob,
+      }
+      if(this.member.index === null){
+        this.$store.commit('addMember', member);
+      }else{
+        const index = this.user.index;
+        this.$store.commit('updateMember', {
+          index,
+          member
+        });
+      }
+      this.closeModal()
+    }
+  },
+  data(){
     return {
-      title: '',
-      forename: '',
-      surname: '',
-      dob: '',
+      user: {...this.member}
     }
   }
 });
