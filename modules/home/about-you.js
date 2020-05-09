@@ -1,9 +1,9 @@
 export const AboutYou = Vue.component('about-you', {
   template: `
-    <div class="panel panel-default">
-      <div class="panel-heading">About you</div>
-      <div class="panel-body">
-        <div class="form-group">
+    <div class="card mb-3">
+      <div class="card-header">About you</div>
+      <div class="card-body">
+        <div class="form-group row">
           <label for="ownTitle" 
                  class="col-sm-2 control-label">
             Your Title
@@ -13,7 +13,7 @@ export const AboutYou = Vue.component('about-you', {
                     name="ownTitle" 
                     v-model="ownTitle" 
                     required>
-              <option value="">Please Choose</option>
+              <option value="null">Please Choose</option>
               <option value="Dr.">Dr.</option>
               <option value="Mr.">Mr.</option>
               <option value="Mrs.">Mrs.</option>
@@ -22,7 +22,7 @@ export const AboutYou = Vue.component('about-you', {
             </select>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
           <label for="ownForename" 
                  class="col-sm-2 control-label">
             Your Forename
@@ -36,7 +36,7 @@ export const AboutYou = Vue.component('about-you', {
                    required>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
           <label for="ownSurname" 
                  class="col-sm-2 control-label">
             Your Surname
@@ -50,7 +50,7 @@ export const AboutYou = Vue.component('about-you', {
                    required>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
           <label for="ownDob" 
                  class="col-sm-2 control-label">
             Your Date of Birth
@@ -96,7 +96,7 @@ export const AboutYou = Vue.component('about-you', {
       },
       set (value) {
         this.$store.commit('update', {
-          attribute:'surename', 
+          attribute:'surname', 
           value
         })
       }

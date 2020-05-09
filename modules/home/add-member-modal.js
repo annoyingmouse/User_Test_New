@@ -8,15 +8,16 @@ export const AddMember = Vue.component('add-member', {
                   v-on:submit.prevent="onSubmit">
               <input type="hidden"
                      v-model="user.index"/>
-              <div class="modal-header">
+              <div class="modal-header">       
+                <h5 class="modal-title">
+                  Please tell us about the family member
+                </h5>
                 <button type="button" 
-                        class="close" 
+                        class="close"
+                        aria-label="Close" 
                         v-on:click="closeModal">
                   <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">
-                  Please tell us about the family member
-                </h4>
+                </button>                  
               </div>
               <div class="modal-body">
                 <div class="form-group">
@@ -76,7 +77,7 @@ export const AddMember = Vue.component('add-member', {
               <div class="modal-footer">
                 <button v-on:click="closeModal" 
                         type="button" 
-                        class="btn btn-default">
+                        class="btn btn-secondary">
                   Close
                 </button>
                 <button type="submit"
@@ -113,7 +114,16 @@ export const AddMember = Vue.component('add-member', {
         forename: this.user.forename,
         surname: this.user.surname,
         dob: this.user.dob,
-        eyeColour: null
+        multiple: {
+          eye: null,
+          hair: null,
+          hand: null
+        },
+        single: {
+          eye: null,
+          hair: null,
+          hand: null
+        }
       }
       if(this.member.index === null){
         this.$store.commit('addMember', member);

@@ -9,58 +9,10 @@ export const store = new Vuex.Store({
     currentView: Home,
     family: [
       {
-        title: 'Dr.',
-        forename: '08',
-        surname: '08',
-        dob: '0808-08-08',
-        multiple: {
-          eye: null,
-          hair: null,
-          hand: null
-        },
-        single: {
-          eye: null,
-          hair: null,
-          hand: null
-        }
-      },
-      {
-        title: "Dr.",
-        forename: "09",
-        surname: "09",
-        dob: "0909-09-09",
-        multiple: {
-          eye: "brown",
-          hair: "brown",
-          hand: "right-handed"
-        },
-        single: {
-          eye: "brown",
-          hair: "brown",
-          hand: "right-handed"
-        }
-      },
-      {
-        title: "Dr.",
-        forename: "10",
-        surname: "10",
-        dob: "1010-10-10",
-        multiple: {
-          eye: null,
-          hair: null,
-          hand: null
-        },
-        single: {
-          eye: null,
-          hair: null,
-          hand: null
-        }
-      },
-      {
-        title: "Dr.",
-        forename: "11",
-        surname: "11",
-        dob: "1111-11-11",
+        title: null,
+        forename: null,
+        surname: null,
+        dob: null,
         multiple: {
           eye: null,
           hair: null,
@@ -75,6 +27,13 @@ export const store = new Vuex.Store({
     ]
   },
   mutations: {
+    initialiseStore(state) {
+			if(localStorage.getItem('store')) {
+				this.replaceState(
+					Object.assign(state, JSON.parse(localStorage.getItem('store')))
+				);
+			}
+		},
     changeView(state, view) {
       if (view === 'table') {
         state.currentView = SingleTable

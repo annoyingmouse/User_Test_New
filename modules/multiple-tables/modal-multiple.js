@@ -7,14 +7,15 @@ export const ModalMultiple = Vue.component('modal-multiple', {
             <form class="modal-content"
                   v-on:submit.prevent="onSubmit">
               <div class="modal-header">
+              
+                <h5 class="modal-title">
+                  {{title}}
+                </h5>
                 <button type="button" 
                         class="close" 
                         v-on:click="closeModal">
                   <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">
-                  {{title}}
-                </h4>
               </div>
               <div class="modal-body">
                 <div class="form-group">
@@ -99,7 +100,7 @@ export const ModalMultiple = Vue.component('modal-multiple', {
               </div>
               <div class="modal-footer">
                 <button type="button" 
-                        class="btn btn-default" 
+                        class="btn btn-secondary" 
                         v-on:click="closeModal">
                   Close
                 </button>

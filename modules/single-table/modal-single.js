@@ -7,14 +7,9 @@ export const ModalSingle = Vue.component('modal-single', {
             <form class="modal-content"
                   v-on:submit.prevent="onSubmit">
               <div class="modal-header">
-                <button type="button" 
-                        class="close" 
-                        v-on:click="closeModal">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">
+                <h5 class="modal-title">
                   {{title}}
-                </h4>
+                </h5>
               </div>
               <div class="modal-body" v-if="type === 'eye'">
                 <div class="checkbox">
@@ -34,7 +29,7 @@ export const ModalSingle = Vue.component('modal-single', {
                           required
                           v-model="eye"
                           v-bind:disabled="!eyeDisabled">
-                    <option value="">Please Choose</option>
+                    <option value="null">Please Choose</option>
                     <option value="brown">Brown</option>
                     <option value="hazel">Hazel</option>
                     <option value="blue">Blue</option>
@@ -62,7 +57,7 @@ export const ModalSingle = Vue.component('modal-single', {
                           required
                           v-model="hair"
                           v-bind:disabled="!hairDisabled">
-                    <option value="">Please Choose</option>
+                    <option value="null">Please Choose</option>
                     <option value="black">Black</option>
                     <option value="brown">Brown</option>
                     <option value="blond">Blond</option>
@@ -78,13 +73,13 @@ export const ModalSingle = Vue.component('modal-single', {
                 <div class="form-group">
                   <label for="hand" 
                          class="control-label">
-                    What is their hand?
+                    What is their handedness?
                   </label>
                   <select class="form-control" 
                           name="handedness"
                           required
                           v-model="hand">
-                    <option value="">Please Choose</option>
+                    <option value="null">Please Choose</option>
                     <option value="right-handed">Right-handed</option>
                     <option value="left-handed">Left-handed</option>
                     <option value="mixed-handed">Mixed-handed</option>
@@ -94,11 +89,6 @@ export const ModalSingle = Vue.component('modal-single', {
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" 
-                        class="btn btn-default" 
-                        v-on:click="closeModal">
-                  Close
-                </button>
                 <button type="submit" 
                         class="btn btn-primary">{{button}}</button>
               </div>
@@ -213,5 +203,9 @@ export const ModalSingle = Vue.component('modal-single', {
         value: null
       });
     }
+  },
+  mounted: function () {
+    this.eyeDisabled = this.eye !== null
+    this.hairDisabled = this.hair !== null
   }
 });
