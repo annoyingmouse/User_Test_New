@@ -64,26 +64,35 @@ export const Home = Vue.component('home', {
         <div class="d-flex justify-content-between mb-4">
           <button type="submit" 
                   class="btn btn-primary float-left" 
-                  v-on:click="$router.push({name: 'tables'})">
+                  v-on:click="submitForm('tables')">
             Add Details - TABLES
           </button>
           <button type="submit" 
                   class="btn btn-primary float-right" 
-                  v-on:click="$router.push({name: 'table'})">
+                  v-on:click="submitForm('table')">
             Add Details - TABLE
           </button>
         </div>
       </form> 
-      <!-- Modal -->
       <add-member v-if="showModal"
                   v-bind:member="member"
                   v-on:close-modal="closeModal"></add-member>
     </div>
   `,
   methods: {
-    changePage(page) {
-      this.$router.replace(page);
-      this.$store.commit('changeView', page)
+    submitForm(page) {
+      if (this.validateForm()) {
+        this.$router.push({name: page});
+      }
+    },
+    validateForm () {
+      var formId = 'familyForm';
+      var nodes = document.querySelectorAll(`#${formId} :invalid`);
+      if (nodes.length > 0) {
+        return false;
+      } else {
+        return true;
+      }
     },
     closeModal() {
       this.showModal = false;
