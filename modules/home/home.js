@@ -35,13 +35,13 @@ export const Home = Vue.component('home', {
                       <button type="button" 
                               class="btn btn-danger"
                               v-on:click="removeMember(index)">
-                        <i class="glyphicon glyphicon-remove" title="Remove"></i> 
+                        <i class="fa fa-trash" title="Remove"></i> 
                         Remove
                       </button>
                       <button type="button" 
                               class="btn btn-primary"
                               v-on:click="updateMember(index)">
-                        <i class="glyphicon glyphicon-edit" title="Edit"></i>
+                        <i class="fa fa-edit" title="Edit"></i>
                         Edit
                       </button>
                     </div>
@@ -64,12 +64,12 @@ export const Home = Vue.component('home', {
         <div class="d-flex justify-content-between mb-4">
           <button type="submit" 
                   class="btn btn-primary float-left" 
-                  v-on:click="$router.push({name: 'multiple'})">
+                  v-on:click="$router.push({name: 'tables'})">
             Add Details - TABLES
           </button>
           <button type="submit" 
                   class="btn btn-primary float-right" 
-                  v-on:click="$router.push({name: 'single'})">
+                  v-on:click="$router.push({name: 'table'})">
             Add Details - TABLE
           </button>
         </div>
@@ -83,7 +83,7 @@ export const Home = Vue.component('home', {
   methods: {
     changePage(page) {
       this.$router.replace(page);
-      this.$store.commit('changeView', page)  
+      this.$store.commit('changeView', page)
     },
     closeModal() {
       this.showModal = false;
@@ -95,11 +95,11 @@ export const Home = Vue.component('home', {
         dob: ''
       }
     },
-    removeMember(index){
+    removeMember(index) {
       this.$store.commit('removeMember', index)
     },
-    updateMember(index){
-      this.member = {...this.family[index]}
+    updateMember(index) {
+      this.member = { ...this.family[index] }
       this.member.index = index;
       this.showModal = true;
     },

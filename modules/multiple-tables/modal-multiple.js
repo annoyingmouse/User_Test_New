@@ -7,7 +7,6 @@ export const ModalMultiple = Vue.component('modal-multiple', {
             <form class="modal-content"
                   v-on:submit.prevent="onSubmit">
               <div class="modal-header">
-              
                 <h5 class="modal-title">
                   {{title}}
                 </h5>
@@ -175,12 +174,12 @@ export const ModalMultiple = Vue.component('modal-multiple', {
         index: this.member,
         type: 'multiple',
         attribute: this.type,
-        value: this.type === 'eye' 
-                 ? this.eyeColour
-                 : this.type === 'hair' 
-                       ? this.hairColour
-                       : this.handedness, 
-        
+        value: this.type === 'eye'
+          ? this.eyeColour
+          : this.type === 'hair'
+            ? this.hairColour
+            : this.handedness,
+
       });
       this.member = -1;
       this.eyeColour = -1;

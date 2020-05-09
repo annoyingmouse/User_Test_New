@@ -50,3 +50,7 @@ export const store = new Vuex.Store({
     getMemberByIndex: (state) => (i) => state.family[i]
   }
 });
+
+store.subscribe((mutation, state) => {
+	localStorage.setItem('store', JSON.stringify(state));
+})

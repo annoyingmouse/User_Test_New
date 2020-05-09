@@ -37,13 +37,13 @@ export const MultipleTable = Vue.component('multiple-table', {
                     <button type="button" 
                             class="btn btn-danger"
                             v-on:click="nullAttribute(index, 'eye')">
-                      <i class="glyphicon glyphicon-remove" title="Remove"></i> 
+                      <i class="fa fa-trash" title="Remove"></i> 
                       Remove
                     </button>
                     <button type="button" 
                             class="btn btn-primary"
                             v-on:click="openModal('update', 'eye', index)">
-                      <i class="glyphicon glyphicon-edit" title="Edit"></i>
+                      <i class="fa fa-edit" title="Edit"></i>
                       Edit
                     </button>
                   </div>
@@ -81,13 +81,13 @@ export const MultipleTable = Vue.component('multiple-table', {
                     <button type="button" 
                             class="btn btn-danger"
                             v-on:click="nullAttribute(index, 'hair')">
-                      <i class="glyphicon glyphicon-remove" title="Remove"></i> 
+                      <i class="fa fa-trash" title="Remove"></i> 
                       Remove
                     </button>
                     <button type="button" 
                             class="btn btn-primary"
                             v-on:click="openModal('update', 'hair', index)">
-                      <i class="glyphicon glyphicon-edit" title="Edit"></i>
+                      <i class="fa fa-edit" title="Edit"></i>
                       Edit
                     </button>
                   </div>
@@ -125,13 +125,13 @@ export const MultipleTable = Vue.component('multiple-table', {
                     <button type="button" 
                             class="btn btn-danger"
                             v-on:click="nullAttribute(index, 'hand')">
-                      <i class="glyphicon glyphicon-remove" title="Remove"></i> 
+                      <i class="fa fa-trash" title="Remove"></i> 
                       Remove
                     </button>
                     <button type="button" 
                             class="btn btn-primary"
                             v-on:click="openModal('update', 'hand', index)">
-                      <i class="glyphicon glyphicon-edit" title="Edit"></i>
+                      <i class="fa fa-edit" title="Edit"></i>
                       Edit
                     </button>
                   </div>
@@ -218,4 +218,4 @@ export const MultipleTable = Vue.component('multiple-table', {
       });
     }
   }
-});
+})

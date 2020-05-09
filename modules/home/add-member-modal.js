@@ -99,16 +99,16 @@ export const AddMember = Vue.component('add-member', {
   },
   computed: {
     buttonText() {
-      return this.member.index === null ? 
+      return this.member.index === null ?
         'Add Family Member' :
-        'Update Family Member' 
+        'Update Family Member'
     }
   },
   methods: {
-    closeModal(){
+    closeModal() {
       this.$emit('close-modal')
     },
-    onSubmit(){
+    onSubmit() {
       const member = {
         title: this.user.title,
         forename: this.user.forename,
@@ -125,9 +125,9 @@ export const AddMember = Vue.component('add-member', {
           hand: null
         }
       }
-      if(this.member.index === null){
+      if (this.member.index === null) {
         this.$store.commit('addMember', member);
-      }else{
+      } else {
         const index = this.user.index;
         this.$store.commit('updateMember', {
           index,
@@ -137,9 +137,9 @@ export const AddMember = Vue.component('add-member', {
       this.closeModal()
     }
   },
-  data(){
+  data() {
     return {
-      user: {...this.member}
+      user: { ...this.member }
     }
   }
 });

@@ -33,11 +33,16 @@ export const SingleTable = Vue.component('single-table', {
                       v-on:click="openModal('eye', index)">
                 Add Eye Colour
               </button>
-              <button class="btn btn-info"
-                      v-if="member.single.eye !== null"
-                      v-on:click="openModal('eye', index)">
-                {{capitalise(member.single.eye)}} | Edit Eye Colour
-              </button>
+              <template v-if="member.single.eye !== null">
+                <strong class="pr-2">
+                  {{capitalise(member.single.eye)}}
+                </strong>
+                <button class="btn btn-info"
+                        v-on:click="openModal('eye', index)">
+                  <i class="fa fa-edit" title="Edit"></i>
+                  Edit Eye Colour
+                </button>
+              </template>
             </td>
             <td class="medium">
               <button class="btn btn-primary"
@@ -45,11 +50,16 @@ export const SingleTable = Vue.component('single-table', {
                       v-on:click="openModal('hair', index)">
                 Add Hair Colour
               </button>
-              <button class="btn btn-info"
-                      v-if="member.single.hair !== null"
-                      v-on:click="openModal('hair', index)">
-                {{capitalise(member.single.hair)}} | Edit Hair Colour
-              </button>
+              <template v-if="member.single.hair !== null">
+                <strong class="pr-2">
+                  {{capitalise(member.single.hair)}}
+                </strong>
+                <button class="btn btn-info"
+                        v-on:click="openModal('hair', index)">
+                  <i class="fa fa-edit" title="Edit"></i>
+                  Edit Hair Colour
+                </button>
+              </template>
             </td>
             <td class="medium">
               <button class="btn btn-primary"
@@ -57,11 +67,16 @@ export const SingleTable = Vue.component('single-table', {
                       v-on:click="openModal('hand', index)">
                 Add Handedness
               </button>
-              <button class="btn btn-info"
-                      v-if="member.single.hand !== null"
-                      v-on:click="openModal('hand', index)">
-                {{capitalise(member.single.hand)}} | Edit Handedness
-              </button>
+              <template v-if="member.single.hand !== null">
+                <strong class="pr-2">
+                  {{capitalise(member.single.hand)}}
+                </strong>
+                <button class="btn btn-info"
+                        v-on:click="openModal('hand', index)">
+                  <i class="fa fa-edit" title="Edit"></i>
+                  Edit Handedness
+                </button>
+              </template>
             </td>
           </tr> 
         </tbody>
