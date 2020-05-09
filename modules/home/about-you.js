@@ -70,34 +70,46 @@ export const AboutYou = Vue.component('about-you', {
   computed: {
     ownTitle: {
       get () {
-        return this.$store.state.user.title
+        return this.$store.state.family[0].title
       },
       set (value) {
-        this.$store.commit('updateTitle', value)
+        this.$store.commit('update', {
+          attribute:'title', 
+          value
+        })
       }
     },
     ownForename: {
       get () {
-        return this.$store.state.user.forename
+        return this.$store.state.family[0].forename
       },
       set (value) {
-        this.$store.commit('updateForename', value)
+        this.$store.commit('update', {
+          attribute:'forename', 
+          value
+        })
       }
     },
     ownSurname: {
       get () {
-        return this.$store.state.user.surname
+        return this.$store.state.family[0].surname
       },
       set (value) {
-        this.$store.commit('updateSurname', value)
+        this.$store.commit('update', {
+          attribute:'surename', 
+          value
+        })
       }
     },
     ownDob: {
       get () {
-        return this.$store.state.user.dob
+        return this.$store.state.family[0].dob
       },
       set (value) {
-        this.$store.commit('updateDob', value)
+        this.$store.commit('update', {
+          attribute:'dob', 
+          value
+        })
       }
     }
   }

@@ -113,6 +113,7 @@ export const AddMember = Vue.component('add-member', {
         forename: this.user.forename,
         surname: this.user.surname,
         dob: this.user.dob,
+        eyeColour: null
       }
       if(this.member.index === null){
         this.$store.commit('addMember', member);

@@ -15,21 +15,21 @@ export const Home = Vue.component('home', {
             About your family
           </div>
           <div class="panel-body">
-            <table id="YourFamily" 
-                   class="table table-bordered table-striped table-condensed">
+            <table class="table table-bordered table-striped table-condensed">
               <thead>
                 <tr>
                   <th>Name</th>
                   <th>Date of Birth</th>
-                  <th>Action</th>
+                  <th class="min">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(member, index) in familyMembers" 
-                    v-bind:key="index">
+                <tr v-for="(member, index) in family" 
+                    v-bind:key="index"
+                    v-if="index">
                   <td>{{member.title}} {{member.forename}} {{member.surname}}</td>
                   <td>{{new Date(member.dob).toLocaleDateString('en-GB')}}</td>
-                  <td class="min">
+                  <td>
                     <div class="pull-right btn-group btn-group-sm" 
                          role="group">
                       <button type="button" 
@@ -51,8 +51,7 @@ export const Home = Vue.component('home', {
             </table>
             <button class="btn btn-primary btn-lg btn-block" 
                     type="button"
-                    v-on:click="showModal = true"
-                    data-backdrop="static">
+                    v-on:click="showModal = true">
                 Add Family Member
             </button>
           </div>
@@ -99,7 +98,7 @@ export const Home = Vue.component('home', {
       this.$store.commit('removeMember', index)
     },
     updateMember(index){
-      this.member = {...this.familyMembers[index]}
+      this.member = {...this.family[index]}
       this.member.index = index;
       this.showModal = true;
     },
@@ -107,13 +106,7 @@ export const Home = Vue.component('home', {
       this.$store.commit('changeView', this.target);
     }
   },
-  computed: {
-    familyMembers: {
-      get () {
-        return this.$store.state.family
-      }
-    }
-  },
+  computed: Vuex.mapState(['family']),
   components: {
     PageHeader
   },

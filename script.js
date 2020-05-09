@@ -11,5 +11,4 @@
       })
   )).join("\n");
   document.head.innerHTML += `<style>${compiled}</style>`;
-  console.log(compiled);
 })();
