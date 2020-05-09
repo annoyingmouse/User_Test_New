@@ -5,7 +5,7 @@ export const MultipleTable = Vue.component('multiple-table', {
     <div>
       <div class="page-header">
         <h1>Thank you again <small>for taking part in this test, you're very nearly done.</small></h1>
-        <p>If you can see three tables below, then you're ready to go. We'd like you to add some details to the family bu clicking the buttons under each table. You (as Dr 08 08) have brown hair, brown eyes and you're left-handed. The rest of your family has these details:</p>
+        <p>If you can see three tables below, then you're ready to go. We'd like you to add some details to the family by clicking the buttons under each table. You (as Dr 08 08) have brown hair, brown eyes and you're left-handed. The rest of your family has these details:</p>
         <ul>
           <li>Dr. 09 09 is somewhat odd with silver eyes, white hair and is ambidextrous (I'm not sure I'd trust them <abbr title="To Be Honest">TBH</abbr>).</li>
           <li>Dr. 10 10 had a rather tragic accident, perhaps due to being ambilevous, and has no eyes or hair as a result.</li>
@@ -20,9 +20,9 @@ export const MultipleTable = Vue.component('multiple-table', {
           <table class="table table-bordered table-striped table-condensed">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Eye Colour</th>
-                <th class="min">Action</th>
+                <th scope="col">Name</th>
+                <th scope="col">Eye Colour</th>
+                <th scope="col" class="min">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -64,9 +64,9 @@ export const MultipleTable = Vue.component('multiple-table', {
           <table class="table table-bordered table-striped table-condensed">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Hair Colour</th>
-                <th class="min">Action</th>
+                <th scope="col">Name</th>
+                <th scope="col">Hair Colour</th>
+                <th scope="col" class="min">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -108,9 +108,9 @@ export const MultipleTable = Vue.component('multiple-table', {
           <table class="table table-bordered table-striped table-condensed">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Handedness</th>
-                <th class="min">Action</th>
+                <th scope="col">Name</th>
+                <th scope="col">Handedness</th>
+                <th scope="col" class="min">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -147,7 +147,7 @@ export const MultipleTable = Vue.component('multiple-table', {
         </div>
       </div>
       <button class="btn btn-primary btn-lg btn-block"
-              v-on:click="changePage('home')">
+              v-on:click="$router.push({name: 'home'})">
         Go Back
       </button>
       <modal-multiple v-if="showModal"
@@ -175,9 +175,6 @@ export const MultipleTable = Vue.component('multiple-table', {
   methods: {
     capitalise(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
-    },
-    changePage: function (page) {
-      this.$store.commit('changeView', page)
     },
     closeModal(){
       this.showModal = false;

@@ -18,9 +18,9 @@ export const Home = Vue.component('home', {
             <table class="table table-bordered table-striped table-condensed">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Date of Birth</th>
-                  <th class="min">Action</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Date of Birth</th>
+                  <th scope="col" class="min">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,12 +64,12 @@ export const Home = Vue.component('home', {
         <div class="d-flex justify-content-between mb-4">
           <button type="submit" 
                   class="btn btn-primary float-left" 
-                  v-on:click="target = 'tables'">
+                  v-on:click="$router.push({name: 'multiple'})">
             Add Details - TABLES
           </button>
           <button type="submit" 
                   class="btn btn-primary float-right" 
-                  v-on:click="target = 'table'">
+                  v-on:click="$router.push({name: 'single'})">
             Add Details - TABLE
           </button>
         </div>
@@ -82,6 +82,7 @@ export const Home = Vue.component('home', {
   `,
   methods: {
     changePage(page) {
+      this.$router.replace(page);
       this.$store.commit('changeView', page)  
     },
     closeModal() {
@@ -119,8 +120,7 @@ export const Home = Vue.component('home', {
         surname: '',
         dob: ''
       },
-      showModal: false,
-      target: null
+      showModal: false
     }
   }
 });

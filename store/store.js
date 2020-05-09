@@ -1,12 +1,7 @@
-import { Home } from '../modules/home/home.js';
-import { SingleTable } from '../modules/single-table/table.js';
-import { MultipleTable } from '../modules/multiple-tables/tables.js';
-
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    currentView: Home,
     family: [
       {
         title: null,
@@ -34,17 +29,6 @@ export const store = new Vuex.Store({
 				);
 			}
 		},
-    changeView(state, view) {
-      if (view === 'table') {
-        state.currentView = SingleTable
-      }
-      if (view === 'tables') {
-        state.currentView = MultipleTable
-      }
-      if (view === 'home') {
-        state.currentView = Home
-      }
-    },
     update(state, { attribute, value }) {
       state.family[0][attribute] = value;
     },

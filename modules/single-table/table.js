@@ -17,10 +17,10 @@ export const SingleTable = Vue.component('single-table', {
       <table class="table table-bordered table-striped table-condensed">
         <thead>
           <tr>
-            <th>Name</th>
-            <th class="medium">Eye Colour</th>
-            <th class="medium">Hair Colour</th>
-            <th class="medium">Handedness</th>
+            <th scope="col">Name</th>
+            <th scope="col" class="medium">Eye Colour</th>
+            <th scope="col" class="medium">Hair Colour</th>
+            <th scope="col" class="medium">Handedness</th>
           </tr>
         </thead>
         <tbody>
@@ -68,7 +68,7 @@ export const SingleTable = Vue.component('single-table', {
       </table>
 		  <hr/>
 			<button class="btn btn-primary btn-lg btn-block"
-              v-on:click="changePage('home')">
+              v-on:click="$router.push({name: 'home'})">
         Go Back
       </button>
       <modal-single v-if="showModal"
@@ -87,9 +87,6 @@ export const SingleTable = Vue.component('single-table', {
   methods: {
     capitalise(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
-    },
-    changePage: function(page) {
-      this.$store.commit('changeView', page)  
     },
     closeModal(){
       this.showModal = false;

@@ -4,29 +4,25 @@
 <head>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>repl.it</title>
+	<title>User Test</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
   <link rel="stylesheet/scss" type="text/css" href="./style/style.scss">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js">
-
-	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.2.0/vuex.js">
-
-	</script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/sass.js/0.6.3/sass.min.js">
-	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.2.0/vuex.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/sass.js/0.6.3/sass.min.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 </head>
 
 <body>
 	<div id="app">
-		<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-light bg-dark mb-4">
 			<div class="container">
         <a class="navbar-brand text-white" href="#">User Test</a>
 			</div>
 		</nav>
 		<div class="container mb-4">
-			<component v-bind:is="$store.getters.currentView"></component>
+			<!-- <component v-bind:is="$store.getters.currentView"></component> -->
+      <router-view></router-view>
 		</div>
 	</div>
 	<script type="module" src="app.js"></script>
