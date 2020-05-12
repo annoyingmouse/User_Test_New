@@ -18,16 +18,16 @@ export const SingleTable = Vue.component('single-table', {
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col" class="medium">Eye Colour</th>
-            <th scope="col" class="medium">Hair Colour</th>
-            <th scope="col" class="medium">Handedness</th>
+            <th scope="col" class="quarter">Eye Colour</th>
+            <th scope="col" class="quarter">Hair Colour</th>
+            <th scope="col" class="quarter">Handedness</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(member, index) in family" 
               v-bind:key="index">
             <td>{{member.title}} {{member.forename}} {{member.surname}}</td>
-            <td class="medium">
+            <td class="quarter">
               <button class="btn btn-primary"
                       v-if="member.single.eye === null"
                       v-on:click="openModal('eye', index)">
@@ -44,7 +44,7 @@ export const SingleTable = Vue.component('single-table', {
                 </button>
               </template>
             </td>
-            <td class="medium">
+            <td class="quarter">
               <button class="btn btn-primary"
                       v-if="member.single.hair === null"
                       v-on:click="openModal('hair', index)">
@@ -61,7 +61,7 @@ export const SingleTable = Vue.component('single-table', {
                 </button>
               </template>
             </td>
-            <td class="medium">
+            <td class="quarter">
               <button class="btn btn-primary"
                       v-if="member.single.hand === null"
                       v-on:click="openModal('hand', index)">

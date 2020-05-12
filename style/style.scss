@@ -1,3 +1,9 @@
+#app {
+  > .container:first-of-type {
+    padding-top: 70px;
+  }
+}
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -14,12 +20,12 @@
   display: table-cell;
   vertical-align: middle;
 }
-
-.min {
-  width: 11em;
+.fifth {
+  width: 20%;
   white-space: nowrap;
+  text-align: center;
 }
-.medium {
+.quarter {
   width: 25%;
   white-space: nowrap;
   text-align: center;

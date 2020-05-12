@@ -20,7 +20,7 @@ export const Home = Vue.component('home', {
                 <tr>
                   <th scope="col">Name</th>
                   <th scope="col">Date of Birth</th>
-                  <th scope="col" class="min">Action</th>
+                  <th scope="col" class="fifth">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -29,7 +29,7 @@ export const Home = Vue.component('home', {
                     v-if="index">
                   <td>{{member.title}} {{member.forename}} {{member.surname}}</td>
                   <td>{{new Date(member.dob).toLocaleDateString('en-GB')}}</td>
-                  <td>
+                  <td class="fifth">
                     <div class="pull-right btn-group btn-group-sm" 
                          role="group">
                       <button type="button" 

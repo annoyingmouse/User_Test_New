@@ -7,7 +7,7 @@
 	<title>User Test</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet/scss" type="text/css" href="./style/style.scss">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.2.0/vuex.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/sass.js/0.6.3/sass.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.1.3/vue-router.min.js"></script>
@@ -16,13 +16,15 @@
 
 <body>
 	<div id="app">
-		<nav class="navbar navbar-expand-lg navbar-light bg-dark mb-4">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark mb-4">
 			<div class="container">
-        <a class="navbar-brand text-white" href="#">User Test</a>
+        <a class="navbar-brand text-white mb-0 h1" href="#">
+          <img src="./images/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          User Test
+        </a>
 			</div>
 		</nav>
 		<div class="container mb-4">
-			<!-- <component v-bind:is="$store.getters.currentView"></component> -->
       <router-view></router-view>
 		</div>
 	</div>

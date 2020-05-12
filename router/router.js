@@ -3,7 +3,6 @@ import { SingleTable } from '../modules/single-table/table.js';
 import { MultipleTable } from '../modules/multiple-tables/tables.js';
 
 export const router = new VueRouter({
-  mode: 'history',
   routes: [
     { 
       path: '/', 

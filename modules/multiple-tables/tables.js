@@ -22,7 +22,7 @@ export const MultipleTable = Vue.component('multiple-table', {
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Eye Colour</th>
-                <th scope="col" class="min">Action</th>
+                <th scope="col" class="fifth">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -31,7 +31,7 @@ export const MultipleTable = Vue.component('multiple-table', {
                   v-if="member.multiple.eye !== null">
                 <td>{{member.title}} {{member.forename}} {{member.surname}}</td>
                 <td>{{capitalise(member.multiple.eye)}}</td>
-                <td>
+                <td class="fifth">
                   <div class="pull-right btn-group btn-group-sm" 
                        role="group">
                     <button type="button" 
@@ -66,7 +66,7 @@ export const MultipleTable = Vue.component('multiple-table', {
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Hair Colour</th>
-                <th scope="col" class="min">Action</th>
+                <th scope="col" class="fifth">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -75,7 +75,7 @@ export const MultipleTable = Vue.component('multiple-table', {
                   v-if="member.multiple.hair !== null">
                 <td>{{member.title}} {{member.forename}} {{member.surname}}</td>
                 <td> {{ capitalise(member.multiple.hair) }} </td>
-                <td>
+                <td class="fifth">
                   <div class="pull-right btn-group btn-group-sm" 
                        role="group">
                     <button type="button" 
@@ -110,7 +110,7 @@ export const MultipleTable = Vue.component('multiple-table', {
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Handedness</th>
-                <th scope="col" class="min">Action</th>
+                <th scope="col" class="fifth">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -119,7 +119,7 @@ export const MultipleTable = Vue.component('multiple-table', {
                   v-if="member.multiple.hand !== null">
                 <td>{{member.title}} {{member.forename}} {{member.surname}}</td>
                 <td>{{capitalise(member.multiple.hand)}}</td>
-                <td>
+                <td class="fifth">
                   <div class="pull-right btn-group btn-group-sm" 
                        role="group">
                     <button type="button" 
