@@ -1,6 +1,6 @@
 export const AboutYou = Vue.component('about-you', {
   template: `
-    <v-card class="mx-auto">
+    <v-card class="mb-3">
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="headline">
