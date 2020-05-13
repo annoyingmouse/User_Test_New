@@ -4,10 +4,10 @@ export const store = new Vuex.Store({
   state: {
     family: [
       {
-        title: null,
-        forename: null,
-        surname: null,
-        dob: null,
+        title: "Dr.",
+        forename: "08",
+        surname: "08",
+        dob: "0808-08-08",
         multiple: {
           eye: null,
           hair: null,
@@ -19,6 +19,13 @@ export const store = new Vuex.Store({
           hand: null
         }
       }
+    ],
+    titles: [
+      "Dr.",
+      "Mr.",
+      "Mrs.",
+      "Miss.",
+      "Ms."
     ]
   },
   mutations: {

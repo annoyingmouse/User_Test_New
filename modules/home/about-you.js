@@ -1,14 +1,9 @@
 export const AboutYou = Vue.component('about-you', {
   template: `
     <v-card class="mb-3">
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="headline">
-            About you  
-          </v-list-item-title>
-        
-        </v-list-item-content>
-      </v-list-item>
+      <v-card-title class="primary white--text">
+        <h3>About you</h3>
+      </v-card-title>
       <v-card-text>
         <v-select v-model="ownTitle"
                   v-bind:items="titles"
@@ -50,13 +45,6 @@ export const AboutYou = Vue.component('about-you', {
     </v-card>
   `,
   data: () => ({
-    titles: [
-      "Dr.",
-      "Mr.",
-      "Mrs.",
-      "Miss.",
-      "Ms."
-    ],
     nameRules: [
       v => !!v || 'Name is required'
     ],
@@ -106,6 +94,7 @@ export const AboutYou = Vue.component('about-you', {
           value
         })
       }
-    }
+    },
+    ...Vuex.mapState(['titles'])
   }
 });
