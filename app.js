@@ -7,9 +7,13 @@ Vue.use(VueRouter)
 
 new Vue({
   el: '#app',
+  vuetify: new Vuetify({}),
   store,
   router,
   beforeCreate() {
 		this.$store.commit('initialiseStore');
-	}
+	},
+  data: {
+    message: 'Using Single File Components'
+  }
 })

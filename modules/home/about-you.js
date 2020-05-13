@@ -1,72 +1,67 @@
 export const AboutYou = Vue.component('about-you', {
   template: `
-    <div class="card mb-3">
-      <div class="card-header">About you</div>
-      <div class="card-body">
-        <div class="form-group row">
-          <label for="ownTitle" 
-                 class="col-sm-2 control-label">
-            Your Title
-          </label>
-          <div class="col-sm-10">
-            <select class="form-control" 
-                    name="ownTitle" 
-                    v-model="ownTitle" 
-                    required>
-              <option value="null">Please Choose</option>
-              <option value="Dr.">Dr.</option>
-              <option value="Mr.">Mr.</option>
-              <option value="Mrs.">Mrs.</option>
-              <option value="Miss.">Miss.</option>
-              <option value="Ms.">Ms.</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="ownForename" 
-                 class="col-sm-2 control-label">
-            Your Forename
-          </label>
-          <div class="col-sm-10">
-            <input type="text" 
-                   class="form-control" 
-                   name="ownForename" 
-                   v-model="ownForename" 
-                   placeholder="John" 
-                   required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="ownSurname" 
-                 class="col-sm-2 control-label">
-            Your Surname
-          </label>
-          <div class="col-sm-10">
-            <input type="text" 
-                   class="form-control" 
-                   v-model="ownSurname" 
-                   name="ownSurname" 
-                   placeholder="Smith" 
-                   required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="ownDob" 
-                 class="col-sm-2 control-label">
-            Your Date of Birth
-          </label>
-          <div class="col-sm-10">
-            <input type="date" 
-                   class="form-control" 
-                   v-model="ownDob" 
-                   name="ownDob" 
-                   placeholder="dd/mm/yyyy" 
-                   required>
-          </div>
-        </div>
-      </div>
-    </div>
+    <v-card class="mx-auto">
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="headline">
+            About you  
+          </v-list-item-title>
+        
+        </v-list-item-content>
+      </v-list-item>
+      <v-card-text>
+        <v-select v-model="ownTitle"
+                  v-bind:items="titles"
+                  v-bind:rules="[v => !!v || 'Item is required']"
+                  label="Your title"
+                  required>
+        </v-select>
+        <v-text-field v-model="ownForename"
+                      v-bind:rules="nameRules"
+                      label="Your forename"
+                      required>
+        </v-text-field>
+        <v-text-field v-model="ownSurname"
+                      v-bind:rules="nameRules"
+                      label="Your surname"
+                      required>
+        </v-text-field>
+        <v-menu ref="menu"
+                v-model="menu"
+                v-bind:close-on-content-click="false"
+                v-bind:return-value.sync="ownDob"
+                transition="scale-transition"
+                offset-y
+                min-width="290px">
+          <template v-slot:activator="{ on }">
+            <v-text-field v-model="ownDob"
+                          label="Date of birth"
+                          readonly
+                          v-on="on">
+            </v-text-field>
+          </template>
+          <v-date-picker v-model="ownDob">
+            <v-spacer></v-spacer>
+            <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+            <v-btn text color="primary" @click="$refs.menu.save(ownDob)">OK</v-btn>
+          </v-date-picker>
+        </v-menu>
+      </v-card-text>
+    </v-card>
   `,
+  data: () => ({
+    titles: [
+      "Dr.",
+      "Mr.",
+      "Mrs.",
+      "Miss.",
+      "Ms."
+    ],
+    nameRules: [
+      v => !!v || 'Name is required'
+    ],
+    menu: false
+  }),
   computed: {
     ownTitle: {
       get() {

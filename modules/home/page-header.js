@@ -1,8 +1,8 @@
 export default {
   template: `
-    <div class="page-header">
+    <div>
       <h1>Thank you 
-        <small>for taking part in this test.</small>
+        <small class="grey--text lighten-1">for taking part in this test.</small>
       </h1>
       <p>We're doing some testing on how easy it is for our users to input the members of a family and their details so we'd be grateful if you could imagine you are Dr. 08 08 with a <abbr title="Date of Birth">DOB</abbr> of 08/08/0808 (you're looking perfect for your age). Further, your family is like this:</p>
       <ul>
