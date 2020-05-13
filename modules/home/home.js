@@ -16,51 +16,37 @@ export const Home = Vue.component('home', {
         </ul>
         <p>Please use the two boxes below to enter details about you and your family then, when you're happy with the details you've provided, use the buttons at the bottom with the titles of <strong>Add Details</strong> to tell us more about you and your family. One uses one table to enter the data (<strong>Add Details - TABLE</strong>); the other uses multiple tables (<strong>Add Details - TABLES</strong>). We don't have a preference for either as they both involve pretty much the same work, but we're interested in which is the easiest and most pleasant to use.</p>
       </div>
-      
-        <form id="familyForm"
-              v-on:submit.prevent="onPageChange">
-          <about-you></about-you>
-          <family-table></family-table>
-          <v-card class="mb-3">
-            <v-card-text>
-              <p>There are two buttons below, they both allow you to enter further, detailed, information about your family. It'd be great if you could try both ways and get back to us about which you prefer, and perhaps why you prefer one over the other. Please be aware that we don't have a preference; we're merely trying to find the best way for people to enter data.</p>
-            </v-card-text>
-          </v-card>
-          <div class="d-flex justify-space-between mb-6">
-            <v-btn x-large 
-                   color="primary" 
-                   dark
-                   v-on:click="submitForm('tables')">
-              Add Details - TABLES
-            </v-btn>
-            <v-btn x-large 
-                   color="primary" 
-                   dark
-                   v-on:click="submitForm('table')">
-              Add Details - TABLE
-            </v-btn>
-          </div>
-        </form> 
+      <v-form ref="form">
+        <about-you></about-you>
+        <family-table></family-table>
+        <v-card class="mb-3">
+          <v-card-text>
+            <p>There are two buttons below, they both allow you to enter further, detailed, information about your family. It'd be great if you could try both ways and get back to us about which you prefer, and perhaps why you prefer one over the other. Please be aware that we don't have a preference; we're merely trying to find the best way for people to enter data.</p>
+          </v-card-text>
+        </v-card>
+        <div class="d-flex justify-space-between mb-6">
+          <v-btn x-large 
+                  color="primary" 
+                  dark
+                  v-on:click="submitForm('tables')">
+            Add Details - TABLES
+          </v-btn>
+          <v-btn x-large 
+                  color="primary" 
+                  dark
+                  v-on:click="submitForm('table')">
+            Add Details - TABLE
+          </v-btn>
+        </div>
+      </v-form> 
     </div>
   `,
   methods: {
     submitForm(page) {
-      if (this.validateForm()) {
+      if(this.$refs.form.validate()){
         this.$router.push({name: page});
       }
     },
-    validateForm () {
-      var formId = 'familyForm';
-      var nodes = document.querySelectorAll(`#${formId} :invalid`);
-      if (nodes.length > 0) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    onPageChange() {
-      this.$store.commit('changeView', this.target);
-    }
   },
   computed: {
     ...Vuex.mapState(['family'])
