@@ -21,11 +21,36 @@ export const store = new Vuex.Store({
       }
     ],
     titles: [
-      "Dr.",
-      "Mr.",
-      "Mrs.",
-      "Miss.",
-      "Ms."
+      'Dr.',
+      'Mr.',
+      'Mrs.',
+      'Miss.',
+      'Ms.'
+    ],
+    eyes: [
+      'brown',
+      'hazel',
+      'blue',
+      'green',
+      'silver',
+      'amber'
+    ],
+    hairColour: [
+      'black',
+      'brown',
+      'blond',
+      'auburn',
+      'chestnut',
+      'red',
+      'grey',
+      'white'
+    ],
+    handedness: [
+      'right-handed',
+      'left-handed',
+      'mixed-handed',
+      'ambidextrous',
+      'ambilevous'
     ]
   },
   mutations: {

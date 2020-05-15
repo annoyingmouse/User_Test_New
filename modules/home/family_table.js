@@ -5,25 +5,29 @@ export const FamilyTable = Vue.component('family-table', {
                   v-bind:items-per-page="5"
                   class="mb-3 elevation-1">
       <template v-slot:top>
-        <v-toolbar flat color="primary white--text">
+        <v-toolbar flat 
+                   color="primary white--text">
           <v-toolbar-title>
             <h3>
               About your family
             </h3>
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-dialog v-model="dialog" max-width="500px">
+          <v-dialog v-model="dialog" 
+                    max-width="500px">
             <template v-slot:activator="{ on }">
               <v-btn color="secondary" 
-                      dark 
-                      class="mb-2" 
-                      v-on="on">
+                     dark 
+                     class="mb-2" 
+                     v-on="on">
                 New family member
               </v-btn>
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">{{ formTitle }}</span>
+                <span class="headline">
+                  {{ formTitle }}
+                </span>
               </v-card-title>
               <v-card-text>
                 <v-container>
@@ -54,14 +58,21 @@ export const FamilyTable = Vue.component('family-table', {
                       <template v-slot:activator="{ on }">
                         <v-text-field v-model="editedItem.dob"
                                       label="Their date of birth"
-                                      readonly
                                       v-on="on">
                         </v-text-field>
                       </template>
                       <v-date-picker v-model="editedItem.dob">
                         <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.menu.save(editedItem.dob)">OK</v-btn>
+                        <v-btn text 
+                               color="primary" 
+                               v-on:click="menu = false">
+                          Cancel
+                        </v-btn>
+                        <v-btn text 
+                               color="primary" 
+                               v-on:click="$refs.menu.save(editedItem.dob)">
+                          OK
+                        </v-btn>
                       </v-date-picker>
                     </v-menu>
                   </v-form>
@@ -69,8 +80,16 @@ export const FamilyTable = Vue.component('family-table', {
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                <v-btn text 
+                       color="blue darken-1" 
+                       v-on:click="close">
+                  Cancel
+                </v-btn>
+                <v-btn text 
+                       color="blue darken-1" 
+                       v-on:click="save">
+                  Save
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>

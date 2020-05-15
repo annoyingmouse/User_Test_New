@@ -1,7 +1,7 @@
 export const AttributeTable = Vue.component('attribute-table', {
   template: `
     <v-data-table v-bind:headers="headers"
-                  v-bind:items="family"
+                  v-bind:items="family.filter(f => f.multiple[type])"
                   v-bind:items-per-page="5"
                   class="mb-3 elevation-1">
       <template v-slot:top>
@@ -28,9 +28,32 @@ export const AttributeTable = Vue.component('attribute-table', {
                 <v-container>
                   <v-form ref="form">
                     <v-select v-model="member"
-                              v-bind:items="family"
+                              v-bind:items="member ? [member] : family.filter(f => !f.multiple[type])"
                               v-bind:rules="[v => !!v || 'Item is required']"
-                              label="Their title"
+                              item-text="full_name"
+                              label="Family member"
+                              return-object
+                              required>
+                    </v-select>
+                    <v-select v-if="type === 'eye'" 
+                              v-model="eye"
+                              v-bind:items="eyes"
+                              v-bind:rules="[v => !!v || 'Eye colour is required']"
+                              label="Their eye colour"
+                              required>
+                    </v-select>
+                    <v-select v-if="type === 'hair'" 
+                              v-model="hair"
+                              v-bind:items="hairColour"
+                              v-bind:rules="[v => !!v || 'Hair colour is required']"
+                              label="Their hair colour"
+                              required>
+                    </v-select>
+                    <v-select v-if="type === 'hand'" 
+                              v-model="hand"
+                              v-bind:items="handedness"
+                              v-bind:rules="[v => !!v || 'Handedness is required']"
+                              label="Their handedness"
                               required>
                     </v-select>
                   </v-form>
@@ -38,15 +61,16 @@ export const AttributeTable = Vue.component('attribute-table', {
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                <v-btn color="blue darken-1" 
+                       text 
+                       v-on:click="close">Cancel</v-btn>
+                <v-btn color="blue darken-1" 
+                       text 
+                       v-on:click="save">Save</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
         </v-toolbar>
-      </template>
-      <template #item.full_name="{ item }">
-        {{ item.title }} {{ item.forename }} {{ item.surname }}
       </template>
       <template #item.attribute="{ item }">
         <template v-if="type === 'eye'">
@@ -61,12 +85,12 @@ export const AttributeTable = Vue.component('attribute-table', {
       </template>
       <template v-slot:item.actions="{ item }">
         <v-icon small
-                v-on:click="deleteItem(item)">
+                v-on:click="deleteAttribute(item)">
                 mdi-delete
         </v-icon>
         <v-icon small
                 class="mr-2"
-                v-on:click="editItem(item)">
+                v-on:click="editAttribute(item)">
                 mdi-pencil
         </v-icon>            
       </template>
@@ -78,6 +102,11 @@ export const AttributeTable = Vue.component('attribute-table', {
       required: true
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.family.forEach(f => f.full_name = `${f.title} ${f.forename} ${f.surname}`)
+    })
+  },
   computed: {
     tableTitle () {
       return `About the ${this.type === 'eye' ? 'eye colour' : this.type === 'hair' ? 'hair colour' : 'handedness'} in your family `
@@ -85,9 +114,22 @@ export const AttributeTable = Vue.component('attribute-table', {
     newButton () {
       return `Add ${this.type === 'hand' ? 'handedness' : this.type} details`
     },
-    ...Vuex.mapState(['family'])
+    ...Vuex.mapState(['family', 'eyes', 'hairColour', 'handedness'])
   },
   methods: {
+    deleteAttribute(item) {
+      this.$store.commit('updateValue', {
+        index: this.family.indexOf(item),
+        type: 'multiple',
+        attribute: this.type,
+        value: null,
+      });
+    },
+    editAttribute(item) {
+      this.member = item
+      this[this.type] = item.multiple[this.type];
+      this.dialog = true
+    },
     capitalise(str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
     },
@@ -95,17 +137,35 @@ export const AttributeTable = Vue.component('attribute-table', {
       this.dialog = false
       this.$refs.form.resetValidation()
       this.$nextTick(() => {
-        this.member = null
+        this.member = null;
+        this.eye = null;
+        this.hair = null;
+        this.hand = null;
       })
     },
     save () {
-      this.close()
+      if(this.$refs.form.validate()) {
+        this.$store.commit('updateValue', {
+          index: this.family.indexOf(this.member),
+          type: 'multiple',
+          attribute: this.type,
+          value: this.type === 'eye'
+            ? this.eye
+            : this.type === 'hair'
+              ? this.hair
+              : this.hand,
+        });
+        this.close()
+      }
     }
   },
   data() {
     return {
       dialog: false,
       member: null,
+      eye: null,
+      hair: null,
+      hand: null,
       headers: [
         {
           text: 'Name',

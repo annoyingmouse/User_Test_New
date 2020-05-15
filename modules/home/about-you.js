@@ -9,17 +9,17 @@ export const AboutYou = Vue.component('about-you', {
       <v-card-text>
         <v-select v-model="ownTitle"
                   v-bind:items="titles"
-                  v-bind:rules="[v => !!v || 'Item is required']"
+                  v-bind:rules="[v => !!v || 'Title is required']"
                   label="Your title"
                   required>
         </v-select>
         <v-text-field v-model="ownForename"
-                      v-bind:rules="nameRules"
+                      v-bind:rules="[v => !!v || 'Forename is required']"
                       label="Your forename"
                       required>
         </v-text-field>
         <v-text-field v-model="ownSurname"
-                      v-bind:rules="nameRules"
+                      v-bind:rules="[v => !!v || 'Surname is required']"
                       label="Your surname"
                       required>
         </v-text-field>
@@ -34,6 +34,7 @@ export const AboutYou = Vue.component('about-you', {
             <v-text-field v-model="ownDob"
                           label="Date of birth"
                           readonly
+                          v-bind:rules="[v => !!v || 'Date of birth is required']"
                           v-on="on">
             </v-text-field>
           </template>
@@ -47,9 +48,6 @@ export const AboutYou = Vue.component('about-you', {
     </v-card>
   `,
   data: () => ({
-    nameRules: [
-      v => !!v || 'Name is required'
-    ],
     menu: false
   }),
   computed: {
