@@ -2,7 +2,9 @@ export const AboutYou = Vue.component('about-you', {
   template: `
     <v-card class="mb-3">
       <v-card-title class="primary white--text">
-        <h3>About you</h3>
+        <h3>
+          About you
+        </h3>
       </v-card-title>
       <v-card-text>
         <v-select v-model="ownTitle"

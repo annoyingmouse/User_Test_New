@@ -4,10 +4,10 @@ export const store = new Vuex.Store({
   state: {
     family: [
       {
-        title: "Dr.",
-        forename: "08",
-        surname: "08",
-        dob: "0808-08-08",
+        title: null,
+        forename: null,
+        surname: null,
+        dob: null,
         multiple: {
           eye: null,
           hair: null,
@@ -36,7 +36,10 @@ export const store = new Vuex.Store({
 				);
 			}
 		},
-    update(state, { attribute, value }) {
+    update(state, { 
+      attribute, 
+      value 
+    }) {
       state.family[0][attribute] = value;
     },
     addMember(state, member) {
@@ -45,15 +48,22 @@ export const store = new Vuex.Store({
     removeMember(state, index) {
       state.family.splice(index, 1);
     },
-    updateMember(state, { index, member }) {
+    updateMember(state, { 
+      index, 
+      member 
+    }) {
       state.family.splice(index, 1, member);
     },
-    updateValue(state, { index, type, attribute, value }) {
+    updateValue(state, { 
+      index, 
+      type, 
+      attribute, 
+      value 
+    }) {
       state.family[index][type][attribute] = value
     }
   },
   getters: {
-    currentView: state => state.currentView,
     getMemberByIndex: (state) => (i) => state.family[i]
   }
 });
