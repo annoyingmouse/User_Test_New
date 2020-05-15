@@ -15,10 +15,13 @@ export const MultipleTable = Vue.component('multiple-table', {
       <attribute-table type="eye"/>
       <attribute-table type="hair"/>
       <attribute-table type="hand"/>
-      <button class="btn btn-primary btn-lg btn-block"
-              v-on:click="$router.push({name: 'home'})">
+      <v-btn block 
+             color="primary"
+             v-on:click="$router.push({
+               name: 'home'
+             })">
         Go Back
-      </button>
+      </v-btn>
     </div>
   `,
   computed: Vuex.mapState(['family']),

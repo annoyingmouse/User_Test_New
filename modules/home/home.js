@@ -41,7 +41,6 @@ export const Home = Vue.component('home', {
   `,
   methods: {
     submitForm(page) {
-      console.log(this.$refs.form.validate());
       if(this.$refs.form.validate()){
         this.$router.push({name: page});
       }
