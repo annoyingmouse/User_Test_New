@@ -21,36 +21,16 @@ export const store = new Vuex.Store({
       }
     ],
     titles: [
-      'Dr.',
-      'Mr.',
-      'Mrs.',
-      'Miss.',
-      'Ms.'
+      'Dr.', 'Mr.', 'Mrs.', 'Miss.', 'Ms.'
     ],
     eyes: [
-      'brown',
-      'hazel',
-      'blue',
-      'green',
-      'silver',
-      'amber'
+      'brown', 'hazel', 'blue', 'green', 'silver', 'amber'
     ],
     hairColour: [
-      'black',
-      'brown',
-      'blond',
-      'auburn',
-      'chestnut',
-      'red',
-      'grey',
-      'white'
+      'black', 'brown', 'blond', 'auburn', 'chestnut', 'red', 'grey', 'white'
     ],
     handedness: [
-      'right-handed',
-      'left-handed',
-      'mixed-handed',
-      'ambidextrous',
-      'ambilevous'
+      'right-handed', 'left-handed', 'mixed-handed', 'ambidextrous', 'ambilevous'
     ]
   },
   mutations: {
@@ -85,11 +65,9 @@ export const store = new Vuex.Store({
       attribute, 
       value 
     }) {
+      console.log(state.family[index]);
       state.family[index][type][attribute] = value
     }
-  },
-  getters: {
-    getMemberByIndex: (state) => (i) => state.family[i]
   }
 });
 

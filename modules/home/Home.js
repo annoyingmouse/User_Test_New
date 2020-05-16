@@ -1,5 +1,5 @@
-import { AboutYou } from './about-you.js';
-import { FamilyTable } from './family_table.js'
+import { AboutYou } from './AboutYou.js';
+import { FamilyTable } from './FamilyTable.js'
 
 export const Home = Vue.component('home', {
   template: `
@@ -26,13 +26,13 @@ export const Home = Vue.component('home', {
           <v-btn x-large 
                  color="primary" 
                  dark
-                 v-on:click="submitForm('tables')">
+                 v-on:click="moveTo('tables')">
             Add Details - TABLES
           </v-btn>
           <v-btn x-large 
                  color="primary" 
                  dark
-                 v-on:click="submitForm('table')">
+                 v-on:click="moveTo('table')">
             Add Details - TABLE
           </v-btn>
         </div>
@@ -40,73 +40,14 @@ export const Home = Vue.component('home', {
     </div>
   `,
   methods: {
-    submitForm(page) {
+    moveTo(page) {
       if(this.$refs.form.validate()){
         this.$router.push({name: page});
       }
     },
   },
-  computed: {
-    ...Vuex.mapState(['family'])
-  },
   components:{
     AboutYou,
     FamilyTable
-  },
-  data() {
-    return {
-      dialog: false,
-      showModal: false,
-      editedIndex: -1,
-      headers: [
-        {
-          text: 'Name',
-          align: 'start',
-          sortable: true,
-          value: 'full_name',
-        },
-        { 
-          text: 'Date of Birth', 
-          value: 'dob' 
-        },
-        { 
-          text: 'Actions', 
-          value: 'actions', 
-          sortable: false 
-        }
-      ],
-      editedItem: {
-        title: null,
-        forename: null,
-        surname: null,
-        dob: null,
-        multiple: {
-          eye: null,
-          hair: null,
-          hand: null
-        },
-        single: {
-          eye: null,
-          hair: null,
-          hand: null
-        }
-      },
-      defaultItem: {
-        title: null,
-        forename: null,
-        surname: null,
-        dob: null,
-        multiple: {
-          eye: null,
-          hair: null,
-          hand: null
-        },
-        single: {
-          eye: null,
-          hair: null,
-          hand: null
-        }
-      },
-    }
   }
 });

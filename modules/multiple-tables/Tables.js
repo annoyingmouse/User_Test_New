@@ -3,7 +3,10 @@ import { AttributeTable } from './AttributeTable.js';
 export const MultipleTable = Vue.component('multiple-table', {
   template: `
     <div>
-      <h1>Thank you again <small>for taking part in this test, you're very nearly done.</small></h1>
+      <h1>
+        Thank you again 
+        <small class="grey--text lighten-1">for taking part in this test, you're very nearly done.</small>
+      </h1>
       <p>If you can see three tables below, then you're ready to go. We'd like you to add some details to the family by clicking the buttons under each table. You (as Dr 08 08) have brown hair, brown eyes and you're left-handed. The rest of your family has these details:</p>
       <ul>
         <li>Dr. 09 09 is somewhat odd with silver eyes, white hair and is ambidextrous (I'm not sure I'd trust them <abbr title="To Be Honest">TBH</abbr>).</li>
@@ -16,7 +19,9 @@ export const MultipleTable = Vue.component('multiple-table', {
       <attribute-table type="hair"/>
       <attribute-table type="hand"/>
       <v-btn block 
+             x-large
              color="primary"
+             class="mb-6"
              v-on:click="$router.push({
                name: 'home'
              })">

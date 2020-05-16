@@ -1,5 +1,5 @@
-import { store } from './store/store.js';
-import { router } from './router/router.js';
+import { store } from './store/store.js'
+import { router } from './router/router.js'
 
 Vue.config.devtools = true
 
@@ -12,8 +12,5 @@ new Vue({
   router,
   beforeCreate() {
 		this.$store.commit('initialiseStore');
-	},
-  data: {
-    message: 'Using Single File Components'
-  }
+	}
 })

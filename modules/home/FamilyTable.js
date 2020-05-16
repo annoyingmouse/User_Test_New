@@ -1,3 +1,5 @@
+import { FullName } from './FullName.js'
+
 export const FamilyTable = Vue.component('family-table', {
   template: `
     <v-data-table v-bind:headers="headers"
@@ -95,22 +97,35 @@ export const FamilyTable = Vue.component('family-table', {
           </v-dialog>
         </v-toolbar>
       </template>
-      <template #item.full_name="{ item }">
-        {{ item.title }} {{ item.forename }} {{ item.surname }}
+      <template v-slot:item.full_name="{ item }">
+        <full-name v-bind:item="item"/>
       </template>
-      <template #item.date_of_birth="{ item }">
+      <template v-slot:item.date_of_birth="{ item }">
         {{new Date(item.dob).toLocaleDateString('en-GB')}}
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon small
-                v-on:click="deleteItem(item)">
-          mdi-delete
-        </v-icon>
-        <v-icon small
-                class="mr-2"
-                v-on:click="editItem(item)">
-          mdi-pencil
-        </v-icon>            
+        <v-btn-toggle class="ma-1">
+          <v-btn small
+                 color="red accent-4"
+                 class="white--text"
+                 v-on:click="deleteItem(item)">
+            <v-icon small 
+                    color="white">
+              mdi-delete
+            </v-icon>
+            Delete
+          </v-btn>
+          <v-btn small
+                 color="primary"
+                 class="white--text"
+                 v-on:click="editItem(item)">
+            <v-icon small 
+                    color="white">
+              mdi-pencil
+            </v-icon>
+            Edit
+          </v-btn>
+        </v-btn-toggle>
       </template>
     </v-data-table>
   `,
@@ -119,6 +134,9 @@ export const FamilyTable = Vue.component('family-table', {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
     },
     ...Vuex.mapState(['family', 'titles'])
+  },
+  components: {
+    FullName
   },
   methods:{
     close () {
@@ -169,13 +187,16 @@ export const FamilyTable = Vue.component('family-table', {
           value: 'full_name',
         },
         { 
-          text: 'Date of Birth', 
+          text: 'Date of Birth',
+          sortable: false,
           value: 'date_of_birth' 
         },
         { 
           text: 'Actions', 
           value: 'actions', 
-          sortable: false 
+          sortable: false,
+          width: 1,
+          align: 'center'
         }
       ],
       editedItem: {

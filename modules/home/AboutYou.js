@@ -1,24 +1,24 @@
 export const AboutYou = Vue.component('about-you', {
   template: `
     <v-card class="mb-3">
-      <v-card-title class="primary white--text">
+      <v-card-title class="primary white--text mb-2">
         <h3>
           About you
         </h3>
       </v-card-title>
       <v-card-text>
-        <v-select v-model="ownTitle"
+        <v-select v-model="title"
                   v-bind:items="titles"
                   v-bind:rules="[v => !!v || 'Title is required']"
                   label="Your title"
                   required>
         </v-select>
-        <v-text-field v-model="ownForename"
+        <v-text-field v-model="forename"
                       v-bind:rules="[v => !!v || 'Forename is required']"
                       label="Your forename"
                       required>
         </v-text-field>
-        <v-text-field v-model="ownSurname"
+        <v-text-field v-model="surname"
                       v-bind:rules="[v => !!v || 'Surname is required']"
                       label="Your surname"
                       required>
@@ -26,22 +26,21 @@ export const AboutYou = Vue.component('about-you', {
         <v-menu ref="menu"
                 v-model="menu"
                 v-bind:close-on-content-click="false"
-                v-bind:return-value.sync="ownDob"
+                v-bind:return-value.sync="dob"
                 transition="scale-transition"
                 offset-y
                 min-width="290px">
           <template v-slot:activator="{ on }">
-            <v-text-field v-model="ownDob"
+            <v-text-field v-model="dob"
                           label="Date of birth"
-                          readonly
                           v-bind:rules="[v => !!v || 'Date of birth is required']"
                           v-on="on">
             </v-text-field>
           </template>
-          <v-date-picker v-model="ownDob">
+          <v-date-picker v-model="dob">
             <v-spacer></v-spacer>
             <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-            <v-btn text color="primary" @click="$refs.menu.save(ownDob)">OK</v-btn>
+            <v-btn text color="primary" @click="$refs.menu.save(dob)">OK</v-btn>
           </v-date-picker>
         </v-menu>
       </v-card-text>
@@ -51,7 +50,7 @@ export const AboutYou = Vue.component('about-you', {
     menu: false
   }),
   computed: {
-    ownTitle: {
+    title: {
       get() {
         return this.$store.state.family[0].title
       },
@@ -62,7 +61,7 @@ export const AboutYou = Vue.component('about-you', {
         })
       }
     },
-    ownForename: {
+    forename: {
       get() {
         return this.$store.state.family[0].forename
       },
@@ -73,7 +72,7 @@ export const AboutYou = Vue.component('about-you', {
         })
       }
     },
-    ownSurname: {
+    surname: {
       get() {
         return this.$store.state.family[0].surname
       },
@@ -84,7 +83,7 @@ export const AboutYou = Vue.component('about-you', {
         })
       }
     },
-    ownDob: {
+    dob: {
       get() {
         return this.$store.state.family[0].dob
       },

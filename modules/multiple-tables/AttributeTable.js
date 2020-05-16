@@ -22,7 +22,7 @@ export const AttributeTable = Vue.component('attribute-table', {
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">Blah blah blah, fix this</span>
+                <span class="headline">{{modalHeadline}}</span>
               </v-card-title>
               <v-card-text>
                 <v-container>
@@ -72,7 +72,7 @@ export const AttributeTable = Vue.component('attribute-table', {
           </v-dialog>
         </v-toolbar>
       </template>
-      <template #item.attribute="{ item }">
+      <template v-slot:item.attribute="{ item }">
         <template v-if="type === 'eye'">
           {{capitalise(item.multiple.eye)}}
         </template>
@@ -84,15 +84,28 @@ export const AttributeTable = Vue.component('attribute-table', {
         </template>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon small
-                v-on:click="deleteAttribute(item)">
-                mdi-delete
-        </v-icon>
-        <v-icon small
-                class="mr-2"
-                v-on:click="editAttribute(item)">
-                mdi-pencil
-        </v-icon>            
+        <v-btn-toggle class="ma-1">
+          <v-btn small
+                 color="red accent-4"
+                 class="white--text"
+                 v-on:click="deleteAttribute(item)">
+            <v-icon small 
+                    color="white">
+              mdi-delete
+            </v-icon>
+            Delete
+          </v-btn>
+          <v-btn small
+                 color="primary"
+                 class="white--text"
+                 v-on:click="editAttribute(item)">
+            <v-icon small 
+                    color="white">
+              mdi-pencil
+            </v-icon>
+            Edit
+          </v-btn>
+        </v-btn-toggle>
       </template>
     </v-data-table>
   `,
@@ -109,21 +122,36 @@ export const AttributeTable = Vue.component('attribute-table', {
   },
   computed: {
     tableTitle () {
-      return `About the ${this.type === 'eye' ? 'eye colour' : this.type === 'hair' ? 'hair colour' : 'handedness'} in your family `
+      return `About the ${this.type === 'eye' 
+        ? 'eye colour' 
+        : this.type === 'hair' 
+          ? 'hair colour' 
+          : 'handedness'} in your family`
     },
     newButton () {
-      return `Add ${this.type === 'hand' ? 'handedness' : this.type} details`
+      return `Add ${this.type === 'hand' 
+        ? 'handedness' 
+        : this.type} details`
+    },
+    modalHeadline () {
+      return `${this.type === 'eye' 
+        ? 'Eye colour' 
+        : this.type === 'hair' 
+          ? 'Hair colour' 
+          : 'Handedness'}`
     },
     ...Vuex.mapState(['family', 'eyes', 'hairColour', 'handedness'])
   },
   methods: {
     deleteAttribute(item) {
-      this.$store.commit('updateValue', {
-        index: this.family.indexOf(item),
-        type: 'multiple',
-        attribute: this.type,
-        value: null,
-      });
+      const index = this.family.indexOf(item)
+      confirm('Are you sure you want to delete this item?') &&
+        this.$store.commit('updateValue', {
+          index,
+          type: 'multiple',
+          attribute: this.type,
+          value: null,
+        });
     },
     editAttribute(item) {
       this.member = item
@@ -137,10 +165,10 @@ export const AttributeTable = Vue.component('attribute-table', {
       this.dialog = false
       this.$refs.form.resetValidation()
       this.$nextTick(() => {
-        this.member = null;
-        this.eye = null;
-        this.hair = null;
-        this.hand = null;
+        this.member = null
+        this.eye = null
+        this.hair = null
+        this.hand = null
       })
     },
     save () {
@@ -174,13 +202,19 @@ export const AttributeTable = Vue.component('attribute-table', {
           value: 'full_name',
         },
         { 
-          text: (this.type === 'eye' ? 'Eye colour' : this.type === 'hair' ? 'Hair colour': 'Handedness'), 
+          text: (this.type === 'eye'
+            ? 'Eye colour'
+            : this.type === 'hair'
+              ? 'Hair colour'
+              : 'Handedness'),
           value: 'attribute' 
         },
         { 
           text: 'Actions', 
           value: 'actions', 
-          sortable: false 
+          sortable: false,
+          width: 1,
+          align: 'center'
         }
       ],
     }
