@@ -230,7 +230,7 @@ export const FamilyTable = Vue.component('family-table', {
           hair: null,
           hand: null
         }
-      },
+      }
     }
   }
 })
