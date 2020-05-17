@@ -65,7 +65,6 @@ export const store = new Vuex.Store({
       attribute, 
       value 
     }) {
-      console.log(state.family[index]);
       state.family[index][type][attribute] = value
     }
   }

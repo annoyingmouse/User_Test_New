@@ -148,9 +148,13 @@ export const SingleTable = Vue.component('single-table', {
   },
   computed: {
     enabledLabel () {
-      return `${this.member?.title} ${this.member?.forename} ${this.member?.surname} has ${this.type === 'eye' 
-        ? 'eyes' 
-        : 'hair'} `
+      return `
+        ${this.member?.title} 
+        ${this.member?.forename} 
+        ${this.member?.surname} 
+        has ${this.type === 'eye' 
+          ? 'eyes' 
+          : 'hair'}`
     },
     modalHeadline () {
       return `${this.type === 'eye'
