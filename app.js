@@ -1,7 +1,3 @@
-// import Vue from './libraries/vue.js'
-// import Vuex from './libraries/vuex.js'
-// import VueRouter from './libraries/vue-router.js'
-// import Vuetify from "./libraries/vuetify.js";
 import { store } from './store/store.js'
 import { router } from './router/router.js'
 
