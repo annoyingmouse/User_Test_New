@@ -527,8 +527,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    * npm install -g rollup
    * rollup app.js --file bundle.js --format iife
    * paste bundle.js into the left-hand panel
-   *
-   *
+   * babeljs.io/repl#?browsers=defaults
+   * Copy over existing bundle.js with contents
+   * of the right-hand panel.
+   * Job done.
    */
 
   Vue.config.devtools = true;

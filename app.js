@@ -9,7 +9,6 @@
  * Job done.
  */
 
-
 import { store } from './store/store.js';
 import { router } from './router/router.js';
 
