@@ -1,9 +1,6 @@
-#app {
-  > .container:first-of-type {
-    padding-top: 70px;
-  }
+#app > .container:first-of-type {
+  padding-top: 70px;
 }
-
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -13,9 +10,8 @@
   height: 100%;
   background-color: rgba(0, 0, 0, .5);
   display: table;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
-
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;

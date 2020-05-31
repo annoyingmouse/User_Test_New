@@ -95,7 +95,7 @@
       <workItem from="1590767408942" duration="68000" />
       <workItem from="1590767906600" duration="2826000" />
       <workItem from="1590822645724" duration="4230000" />
-      <workItem from="1590922828873" duration="3073000" />
+      <workItem from="1590922828873" duration="3260000" />
     </task>
     <task id="LOCAL-00001" summary="Multiple tables seems to be working now.">
       <created>1589569077105</created>
@@ -284,5 +284,9 @@
     </state>
     <state x="667" y="119" width="585" height="801" key="find.popup/0.0.1920.1040/1920.0.1920.1040/3840.0.1536.824@0.0.1920.1040" timestamp="1589601502732" />
     <state x="667" y="119" width="585" height="801" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589635894305" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1590926088772">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590926088772" />
   </component>
 </project>
