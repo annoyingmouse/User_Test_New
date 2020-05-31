@@ -522,6 +522,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       component: MultipleTable
     }]
   });
+  /*
+   * To configure for IE11
+   * npm install -g rollup
+   * rollup app.js --file bundle.js --format iife
+   * paste bundle.js into the left-hand panel
+   *
+   *
+   */
+
   Vue.config.devtools = true;
   Vue.use(VueRouter);
   new Vue({
